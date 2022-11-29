@@ -1,0 +1,4 @@
+--2. (20 ptos.) Genere un programa en PL/SQL que sea capaz de mostrar el nombre de los
+--programas y la cantidad de estudiantes que se encuentran en los distintos estados. Adem´as,
+--de mostrar la cantidad de acad´emicos que son claustro y la cantidad de acad´emicos que
+--son colaboradores durante el semestre actual.
