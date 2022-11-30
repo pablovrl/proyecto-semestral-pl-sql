@@ -83,3 +83,30 @@ CREATE TABLE INSCRIBE (
 insert into INSCRIBE values (1,'3232312', 5.2, 'sin calificar');
 insert into INSCRIBE values (1,'2342342', 6.0, 'sin calificar');
 
+CREATE TABLE ACADEMICO (
+    aca_rut varchar2(100) PRIMARY KEY,
+    aca_nombres varchar(200),
+    aca_apellidos varchar(200),
+    aca_fecha_nac date,
+    aca_email varchar(200),
+    aca_anexo varchar(200),
+    -- dep_codigo int,
+    -- foreign key (dep_codigo) references DEPARTAMENTO(dep_codigo)
+)
+
+insert into ACADEMICO values ('123', 'Elvis', 'Rodriguez', '29/10/2000', 'elvis@gmail.com', '123');
+insert into ACADEMICO values ('1234', 'Pablo', 'Academico', '29/10/2000', 'pablo@gmail.com', '123');
+insert into ACADEMICO values ('1235', 'Ignacio', 'Academico', '29/10/2000', 'ignacio@gmail.com', '123');
+
+CREATE TABLE ASOCIADO (
+    aca_rut varchar2(100),
+    pos_codigo int,
+    rol varchar2(100),
+    primary key (aca_rut, pos_codigo),
+    foreign key (aca_rut) references ACADEMICO(aca_rut),
+    foreign key (pos_codigo) references PROGRAMA(pos_codigo)
+)
+
+insert into ASOCIADO values ('123', 1, 'Colaborador');
+insert into ASOCIADO values ('1234', 2, 'Claustro');
+insert into ASOCIADO values ('1235', 1, 'Claustro');
