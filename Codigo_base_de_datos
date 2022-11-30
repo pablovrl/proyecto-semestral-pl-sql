@@ -28,7 +28,7 @@ insert into PROGRAMA values (2,'Testers',2022);
 
 CREATE TABLE MATRICULA (
     est_rut varchar2(12),
-    pos_codigo integer,
+    pos_codigo int,
     primary key (est_rut, pos_codigo),
     foreign key (est_rut) references ESTUDIANTE(est_rut),
     foreign key (pos_codigo) references PROGRAMA(pos_codigo)
@@ -68,7 +68,7 @@ CREATE TABLE ASIGNATURA (
 insert into ASIGNATURA values (1,'apreciacion artistica', 2);
 
 CREATE TABLE INSCRIBE (
-    asi_codigo integer,
+    asi_codigo int,
     est_rut varchar(12),
     nota float,
     estado varchar2(50),
