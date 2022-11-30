@@ -3,17 +3,10 @@
 --que esto ocurra, se debe cambiar el estado de acuerdo a la nota registrada.
 
 CREATE OR REPLACE TRIGGER ESTA_APROBADO AFTER INSERT ON inscribe FOR EACH ROW
-DECLARE
-notaFinal FLOAT;
-
 BEGIN 
-  SELECT I.nota into notaFinal from estudiante E, inscribe I
-  WHERE E.est_rut=I.est_rut;  
-  IF 4.0 < notaFinal THEN
-    UPDATE inscribe SET estado = 'Reprobado';
-  ELSE 
-    UPDATE inscribe SET estado = 'Aprobado';
+  IF :new.nota_final < 4 THEN
+    UPDATE estudiante SET estado = 'Reprobado' WHERE est_rut = :new.est_rut;
+  ELSE
+    UPDATE estudiante SET estado = 'Aprobado' WHERE est_rut = :new.est_rut;
   END IF;
 END;
-
-
