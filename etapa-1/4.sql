@@ -8,10 +8,10 @@ estado_estudiante estado.esta_descripcion%type;
 
 BEGIN 
   SELECT E.esta_descripcion INTO estado_estudiante FROM estudiante E, tiene_estado TE, estado E, tiene_emp TEM, empleador EM
-  WHERE E.est_rut=TEM.est_rut AND TEM.emp_rut=EM.emp_rut
-  AND E.est_rut=TE.est_rut AND TE.esta_id=E.esta_id;
-  
-  IF estado_estudiante = 'Graduado' THEN 
+  WHERE E.est_rut=TE.est_rut AND TE.esta_id=E.esta_id
+  AND E.est_rut=TEM.est_rut AND TEM.emp_rut=:new.emp_rut;
+   
+  IF estado_estudiante <> 'Graduado' THEN 
     RAISE_APPLICATION_ERROR(-20300,'El estudiante no se encuentra graduado.');  
   END IF;
  END;
