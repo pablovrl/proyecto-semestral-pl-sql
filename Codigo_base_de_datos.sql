@@ -34,6 +34,25 @@ CREATE TABLE MATRICULA (
     foreign key (pos_codigo) references PROGRAMA(pos_codigo)
 );
 
+CREATE TABLE EMPLEADOR(
+    emp_rut varchar2(12) primary key,
+    emp_nombres varchar2(50),
+    emp_apellidos varchar2(100),
+    emp_correo_electronico varchar2(150),
+    emp_telefono int
+);
+
+CREATE TABLE TIENE_EMP(
+    est_rut varchar2(12),
+    emp_rut varchar2(12),
+    fecha_inicio date,
+    fecha_termino date,
+    primary key (est_rut, emp_rut),
+    foreign key (est_rut) references ESTUDIANTE(est_rut),
+    foreign key (emp_rut) references EMPLEADOR(emp_rut)
+);
+
+
 insert into MATRICULA values ('3232312',2);
 insert into MATRICULA values ('2342342',1);
 insert into MATRICULA values ('3211231',1);
