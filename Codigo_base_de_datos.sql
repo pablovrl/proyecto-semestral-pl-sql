@@ -36,6 +36,7 @@ CREATE TABLE MATRICULA (
 
 insert into MATRICULA values ('3232312',2);
 insert into MATRICULA values ('2342342',1);
+insert into MATRICULA values ('3211231',1);
 
 
 CREATE TABLE ESTADO (
