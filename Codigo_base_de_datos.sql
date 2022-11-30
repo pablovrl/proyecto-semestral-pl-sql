@@ -45,6 +45,7 @@ CREATE TABLE ESTADO (
 
 insert into ESTADO values (1,'Tesista');
 insert into ESTADO values (2,'Regular');
+insert into ESTADO values (3,'Graduado');
 
 CREATE TABLE TIENE_ESTADO (
     est_rut varchar2(12),
@@ -58,6 +59,7 @@ CREATE TABLE TIENE_ESTADO (
 
 insert into TIENE_ESTADO values ('3232312',2,'06/07/2022','30/12/2022');
 insert into TIENE_ESTADO values ('2342342',1,'06/07/2022','30/12/2022');
+insert into TIENE_ESTADO values ('3211231',3,'06/07/2022','30/12/2022');
 
 CREATE TABLE ASIGNATURA (
     asi_codigo int primary key,
