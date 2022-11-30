@@ -6,13 +6,12 @@ CREATE OR REPLACE TRIGGER ESTA_APROBADO AFTER INSERT ON inscribe FOR EACH ROW
 DECLARE
 notaFinal FLOAT;
 
-
 BEGIN 
   SELECT I.nota into notaFinal from estudiante E, inscribe I
-  WHERE E.est_rut=I.est_rut  
-  IF 4,0 < notaFinal THEN
-    UPDATE inscribe SET estado = 'Reprobado'
+  WHERE E.est_rut=I.est_rut;  
+  IF 4.0 < notaFinal THEN
+    UPDATE inscribe SET estado = 'Reprobado';
   ELSE 
-    UPDATE inscribe SET estado = 'Aprobado'
+    UPDATE inscribe SET estado = 'Aprobado';
   END IF;
 END;
