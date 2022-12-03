@@ -1,19 +1,16 @@
 --4. (30 ptos.) Crear un trigger que no permita registrar informaci´on de empleadores mientras
 --el estudiante no tenga el estado de graduado.
 
-CREATE OR REPLACE TRIGGER NO_EMPLEADORES BEFORE INSERT ON empleador
-FOR EACH ROW
+CREATE OR REPLACE TRIGGER no_graduado BEFORE INSERT ON tiene_emp FOR EACH ROW
 DECLARE 
-estado_estudiante estado.esta_descripcion%type;
-
+    estado_estudiante VARCHAR2(20);
 BEGIN 
-  SELECT E.esta_descripcion INTO estado_estudiante FROM estudiante E, tiene_estado TE, estado E, tiene_emp TEM, empleador EM
-  WHERE E.est_rut=TE.est_rut AND TE.esta_id=E.esta_id
-  AND E.est_rut=TEM.est_rut AND TEM.emp_rut=:new.emp_rut;
-   
-  IF estado_estudiante <> 'Graduado' THEN 
-    RAISE_APPLICATION_ERROR(-20300,'El estudiante no se encuentra graduado.');  
-  END IF;
- END;
+    SELECT ES.esta_descripcion INTO estado_estudiante FROM estudiante E, tiene_estado TE, estado ES
+    WHERE E.est_rut=TE.est_rut AND TE.esta_id=ES.esta_id and E.est_rut= :new.est_rut; 
+
+    IF estado_estudiante <> 'Graduado' THEN
+        RAISE_APPLICATION_ERROR(-20001, 'El estudiante no esta graduado');
+    END IF;
+END;
 
 
