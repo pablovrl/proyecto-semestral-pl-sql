@@ -102,6 +102,18 @@ CREATE TABLE INSCRIBE (
 insert into INSCRIBE values (1,'3232312', 5.2, 'sin calificar');
 insert into INSCRIBE values (1,'2342342', 6.0, 'sin calificar');
 
+CREATE TABLE FACULTAD (
+    fac_codigo int primary key,
+    fac_nombre varchar2(200)
+);
+
+CREATE TABLE DEPARTAMENTO (
+    dep_codigo int primary key,
+    dep_nombre varchar2(50),
+    fac_codigo int,
+    foreign key (fac_codigo) references FACULTAD(fac_codigo)
+);
+
 CREATE TABLE ACADEMICO (
     aca_rut varchar2(100) PRIMARY KEY,
     aca_nombres varchar(200),
@@ -109,8 +121,8 @@ CREATE TABLE ACADEMICO (
     aca_fecha_nac date,
     aca_email varchar(200),
     aca_anexo varchar(200),
-    -- dep_codigo int,
-    -- foreign key (dep_codigo) references DEPARTAMENTO(dep_codigo)
+    dep_codigo int,
+    foreign key (dep_codigo) references DEPARTAMENTO(dep_codigo)
 )
 
 insert into ACADEMICO values ('123', 'Elvis', 'Rodriguez', '29/10/2000', 'elvis@gmail.com', '123');
@@ -129,3 +141,75 @@ CREATE TABLE ASOCIADO (
 insert into ASOCIADO values ('123', 1, 'Colaborador');
 insert into ASOCIADO values ('1234', 2, 'Claustro');
 insert into ASOCIADO values ('1235', 1, 'Claustro');
+
+CREATE TABLE Universidad_Externa (
+    uex_codigo int primary key,
+    uex_nombre varchar2(255),
+    uex_ciudad varchar2(255),
+    uex_pais varchar2(255)
+);
+
+CREATE TABLE Grado (
+    gra_codigo int primary key,
+    gra_tipo varchar2(255),
+    gra_nombre varchar2(255),
+    uex_codigo int,
+    foreign key (uex_codigo) references Universidad_Externa(uex_codigo)
+);
+
+CREATE TABLE TIENE (
+    gra_codigo int,
+    aca_rut varchar2(100),
+    fecha_obtencion date,
+    primary key (gra_codigo, aca_rut),
+    foreign key (gra_codigo) references Grado(gra_codigo),
+    foreign key (aca_rut) references ACADEMICO(aca_rut)
+);
+
+CREATE TABLE Tipo_Postgrado (
+    tpos_id int primary key,
+    tpos_descripcion varchar2(255)
+);
+
+CREATE TABLE CLASIFICA (
+    tpos_id int,
+    pos_codigo int,
+    fecha_inicio DATE,
+    fecha_termino DATE,
+    primary key (tpos_id, pos_codigo),
+    foreign key (tpos_id) references Tipo_Postgrado(tpos_id),
+    foreign key (pos_codigo) references PROGRAMA(pos_codigo)
+);
+
+CREATE TABLE DIRIGE (
+    aca_rut varchar2(100),
+    pos_codigo int,
+    primary key (aca_rut, pos_codigo),
+    foreign key (aca_rut) references ACADEMICO(aca_rut),
+    foreign key (pos_codigo) references PROGRAMA(pos_codigo)
+);
+
+CREATE TABLE ASOCIADO (
+    aca_rut varchar2(100),
+    pos_codigo int,
+    rol varchar2(100),
+    primary key (aca_rut, pos_codigo),
+    foreign key (aca_rut) references ACADEMICO(aca_rut),
+    foreign key (pos_codigo) references PROGRAMA(pos_codigo)
+);
+
+CREATE TABLE DICTA (
+    asi_codigo int,
+    aca_rut varchar2(100),
+    primary key (asi_codigo, aca_rut),
+    foreign key (asi_codigo) references ASIGNATURA(asi_codigo),
+    foreign key (aca_rut) references ACADEMICO(aca_rut)
+);
+
+CREATE TABLE co_guia (
+    pub_codigo int,
+    aca_rut varchar2(100),
+    primary key (pub_codigo, aca_rut),
+    foreign key (pub_codigo) references PUBLICACION(pub_codigo),
+    foreign key (aca_rut) references ACADEMICO(aca_rut)
+);
