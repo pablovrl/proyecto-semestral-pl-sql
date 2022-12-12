@@ -4,9 +4,9 @@
 
 CREATE OR REPLACE TRIGGER ESTA_APROBADO AFTER INSERT ON inscribe FOR EACH ROW
 BEGIN 
-  IF :new.nota_final < 4 THEN
-    UPDATE estudiante SET estado = 'Reprobado' WHERE est_rut = :new.est_rut;
+  IF :new.nota < 4 THEN
+    UPDATE inscribe SET estado = 'Reprobado' WHERE est_rut = :new.est_rut;
   ELSE
-    UPDATE estudiante SET estado = 'Aprobado' WHERE est_rut = :new.est_rut;
+    UPDATE inscribe SET estado = 'Aprobado' WHERE est_rut = :new.est_rut;
   END IF;
 END;
