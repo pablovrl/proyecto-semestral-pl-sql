@@ -1,0 +1,3 @@
+-- (20 ptos.) De acuerdo a todo lo planteado en este enunciado (parte I y II), defina dos
+-- ındices que permita mejorar el rendimiento de esta Base de Datos. 
+--No se debe considerar los  ́ındices impĺıcitos de las claves primarias.
