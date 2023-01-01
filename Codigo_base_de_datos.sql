@@ -218,7 +218,7 @@ CREATE TABLE TIENE_ESTADO (
     foreign key (est_rut) references ESTUDIANTE(est_rut)
 );
 
-insert into TIENE_ESTADO values ('3232312',2,'06/07/2022','30/12/2022');
+insert into TIENE_ESTADO values ('3232312',4,'06/07/2022','30/12/2022');
 insert into TIENE_ESTADO values ('2342342',1,'06/07/2022','30/12/2022');
 insert into TIENE_ESTADO values ('3211231',3,'06/07/2022','30/12/2022');
 
