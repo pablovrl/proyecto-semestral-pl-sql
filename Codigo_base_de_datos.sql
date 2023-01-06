@@ -50,6 +50,7 @@ CREATE TABLE ESTUDIANTE (
 insert into ESTUDIANTE values ('3232312','Elvis','Rodriguez','29/10/2000','lomos@gmail.com','mmm',2019,'Penco',1,1);
 insert into ESTUDIANTE values ('2342342','Pablo','Villaroel','18/10/2001','suplapollas21@gmail.com','si',2019,'Palomares',1,1);
 insert into ESTUDIANTE values ('3211231','Ignacio','Gonzalez','19/10/2001','colocologrande@gmail.com','casi',2019,'Concepcion',1,1);
+insert into ESTUDIANTE values ('123', 'Prueba', 'Test', '01-01-2000', 'email@test.com', 'hola', '2022', 'Sisis');
 
 select * from ESTUDIANTE;
 
@@ -244,7 +245,7 @@ CREATE TABLE DICTA (
 );
 
 CREATE TABLE PUBLICACION (
-    pub_codigo int,
+    pub_codigo int PRIMARY KEY,
     pub_nombre varchar2(100)
 );
 
